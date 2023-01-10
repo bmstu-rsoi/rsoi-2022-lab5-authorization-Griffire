@@ -39,35 +39,41 @@
 							"mode": "urlencoded",
 							"urlencoded": [
 								{
-									"key": "scope",
+									"key": "\"scope\"",
 									"value": "openid",
 									"type": "text"
 								},
+                                {
+                                    "key": "\"username\"",
+                                    "value": "g00gle.com@internet.ru",
+                                    "type": "text"
+                                },
 								{
-									"key": "grant_type",
+									"key": "\"grant_type\"",
 									"value": "password",
 									"type": "text"
 								},
+                    
 								{
-									"key": "username",
-									"value": "{{username}}",
+									"key": "\"password\"",
+									"value": "g00gle.com@internet.ru",
 									"type": "text"
 								},
 								{
-									"key": "password",
-									"value": "{{password}}",
+									"key": "\"clientId\"",
+									"value": "l0vGoTD3V5pKzH3XooJYQcniAiaYf54T",
 									"type": "text"
 								},
 								{
-									"key": "clientId",
-									"value": "{{clientId}}",
+									"key": "\"clientSecret\"",
+									"value": "sNugChjLk9K-5T1Cptp4sRXj588KfxnOIZ3AWVDRsxycWmD7B5_dndFy7aDTQLJ-",
 									"type": "text"
 								},
-								{
-									"key": "clientSecret",
-									"value": "{{clientSecret}}",
-									"type": "text"
-								}
+                                {
+                                    "key":  "\"audience\"",
+                                    "value": "https://lab5griffv1api",
+                                    "type": "text"
+                                }
 							]
 						},
 						"url": {

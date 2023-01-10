@@ -7,7 +7,8 @@ RUN pip install \
  	uvicorn \
 fastapi \
 psycopg2 \
-requests 
+requests \
+ pyjwt[crypto]
 
 
 

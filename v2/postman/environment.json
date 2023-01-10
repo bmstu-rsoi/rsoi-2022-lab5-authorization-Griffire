@@ -4,32 +4,32 @@
   "values": [
     {
       "key": "serviceUrl",
-      "value": "",
+      "value": "158.160.41.150",
       "enabled": true
     },
     {
       "key": "identityProviderUrl",
-      "value": "",
+      "value": "https://dev-c0acsqpvgx5g1phe.us.auth0.com",
       "enabled": true
     },
     {
       "key": "username",
-      "value": "",
+      "value": "g00gle.com@internet.ru",
       "enabled": true
     },
     {
       "key": "password",
-      "value": "",
+      "value": "g00gle.com@internet.ru",
       "enabled": true
     },
     {
       "key": "clientId",
-      "value": "",
+      "value": "l0vGoTD3V5pKzH3XooJYQcniAiaYf54T",
       "enabled": true
     },
     {
       "key": "clientSecret",
-      "value": "",
+      "value": "sNugChjLk9K-5T1Cptp4sRXj588KfxnOIZ3AWVDRsxycWmD7B5_dndFy7aDTQLJ-",
       "enabled": true
     }
   ],
