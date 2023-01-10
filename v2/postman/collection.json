@@ -36,45 +36,9 @@
 						"method": "POST",
 						"header": [],
 						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "\"scope\"",
-									"value": "openid",
-									"type": "text"
-								},
-                                {
-                                    "key": "\"username\"",
-                                    "value": "g00gle.com@internet.ru",
-                                    "type": "text"
-                                },
-								{
-									"key": "\"grant_type\"",
-									"value": "password",
-									"type": "text"
-								},
-                    
-								{
-									"key": "\"password\"",
-									"value": "g00gle.com@internet.ru",
-									"type": "text"
-								},
-								{
-									"key": "\"clientId\"",
-									"value": "l0vGoTD3V5pKzH3XooJYQcniAiaYf54T",
-									"type": "text"
-								},
-								{
-									"key": "\"clientSecret\"",
-									"value": "sNugChjLk9K-5T1Cptp4sRXj588KfxnOIZ3AWVDRsxycWmD7B5_dndFy7aDTQLJ-",
-									"type": "text"
-								},
-                                {
-                                    "key":  "\"audience\"",
-                                    "value": "https://lab5griffv1api",
-                                    "type": "text"
-                                }
-							]
+                            "mode": "raw",
+							"raw": "{ \"client_id\":\"l0vGoTD3V5pKzH3XooJYQcniAiaYf54T\", \"client_secret\":\"sNugChjLk9K-5T1Cptp4sRXj588KfxnOIZ3AWVDRsxycWmD7B5_dndFy7aDTQLJ-\",\"audience\":\"https://lab5griffv1api\", \"grant_type\":\"password\",\"username\":\"g00gle.com@internet.ru\", \"password\":\"g00gle.com@internet.ru\", \"scope\":\"openid\"  }"
+                            
 						},
 						"url": {
 							"raw": "{{identityProviderUrl}}/oauth/token",
