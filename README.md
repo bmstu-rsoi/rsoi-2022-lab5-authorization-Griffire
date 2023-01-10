@@ -1,47 +1,46 @@
-# Лабораторная работа #5
+# Лабораторная работа #4
 
 ![GitHub Classroom Workflow](../../workflows/GitHub%20Classroom%20Workflow/badge.svg?branch=master)
 
-## OAuth2 Authorization
+## Deploy to Cloud
 
 ### Формулировка
 
-На базе [Лабораторной работы #4](https://github.com/bmstu-rsoi/lab2-template) реализовать OAuth2 token-based
-авторизацию.
-
-* Для авторизации использовать OpenID Connect, в роли Identity Provider использовать стороннее решение.
-* На Identity Provider настроить
-  использование [Resource Owner Password flow](https://auth0.com/docs/authorization/flows/resource-owner-password-flow)
-  (в одном запросе передается `clientId`, `clientSecret`, `username`, `password`).
-* Все методы `/api/**` (кроме `/api/v1/authorize` и `/api/v1/callback`) на всех сервисах закрыть token-based
-  авторизацией.
-* В качестве токена использовать [JWT](https://jwt.io/introduction), для валидации токена
-  использовать [JWKs](https://auth0.com/docs/security/tokens/json-web-tokens/json-web-key-sets), _запрос к Identity
-  Provider делать не нужно_.
-* JWT токен пробрасывать между сервисами, при получении запроса валидацию токена так же реализовать через JWKs.
-* Убрать заголовок `X-User-Name` и получать пользователя из JWT-токена.
-* Если авторизация некорректная (отсутствие токена, ошибка валидации JWT токена, закончилось время жизни токена
-  (поле `exp` в payload)), то отдавать 401 ошибку.
-* В `scope` достаточно указывать `openid profile email`.
+На базе [Лабораторной работы #2](https://github.com/bmstu-rsoi/lab2-template) выполнить деплой приложения в managed
+кластер k8s.
 
 ### Требования
 
-1. Для автоматических прогонов тестов в файле [autograding.json](.github/classroom/autograding.json)
+1. Скопировать исходный код из ЛР #2 в проект.
+2. Развернуть руками свой Managed Kubernetes Cluster, настроить Ingress Controller (для публикации сервисов наружу можно
+   использовать _только_ Ingress).
+4. Собрать и опубликовать образы docker в [Docker Registry](https://hub.docker.com/).
+5. Описать манифесты для деплоя в виде [helm charts](https://helm.sh/docs/topics/charts/), они должен быть универсальным
+   для всех сервисов и отличаться лишь набором параметров запуска.
+6. В кластере k8s можно использовать один физический instance базы, но каждый сервис должен работать только со своей
+   виртуальной базой данных. Задеплоить базу в кластер можно руками, либо использовать уже готовый helm chart.
+7. Код хранить на Github, для сборки использовать Github Actions.
+8. Для автоматических прогонов тестов в файле [autograding.json](.github/classroom/autograding.json)
    и [classroom.yml](.github/workflows/classroom.yml) заменить `<variant>` на ваш вариант.
-1. Код хранить на Github, для сборки использовать Github Actions.
-1. Каждый сервис должен быть завернут в docker.
-1. В classroom.yml дописать шаги на сборку, прогон unit-тестов.
+9. В [classroom.yml](.github/workflows/classroom.yml) дописать шаги:
+    1. сборка приложения;
+    2. сборка и публикация образа docker (можно использовать `docker compose build`, `docker compose push`);
+    3. деплой каждого сервиса в кластер k8s.
 
 ### Пояснения
 
-1. В роли Identity Provider можно использовать любое решение, вот несколько рабочих вариантов:
-    1. [Okta](https://developer.okta.com/docs/guides/)
-    2. [Auth0](https://auth0.com/developers)
-2. Для получения metadata для OpenID Connect можно
-   использовать [Well-Known URI](https://auth0.com/docs/security/tokens/json-web-tokens/locate-json-web-key-sets):
-   `https://[base-server-url]/.well-known/openid-configuration`.
-3. Из Well-Known metadata можно получить Issuer URI и JWKs URI.
-4. Для реализации OAuth2 можно использовать сторонние библиотеки.
+Т.к. развертывание полноценного кластера на виртуальным машинах очень сложный процесс, можно использовать Managed
+Kubernetes Cluster, т.е. готовый кластер k8s, предоставляемый сторонней платформой, например:
+
+* [Digital Ocean](https://www.digitalocean.com/products/kubernetes/)
+* [Yandex Cloud](https://cloud.yandex.ru/services/managed-kubernetes)
+* [Google Kubernetes Engine](https://cloud.google.com/kubernetes-engine)
+* [AWS](https://aws.amazon.com/ru/eks/)
+
+Платформ, которые предоставляют Kubernetes as a Service большое количество, вы можете сами исследовать рынок и выбрать
+другого провайдера услуг. Большинство провайдеров имеют бесплатный триальный период или денежный грант.
+
+Для создания кластера достаточно 2-3 worker ноды 2Gb, 1CPU.
 
 ### Прием задания
 

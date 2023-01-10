@@ -1,0 +1,68 @@
+version: "3"
+services:
+  # postgres:
+  #   image: library/postgres:13
+  #   container_name: postgres
+  #   restart: on-failure
+  #   environment:
+  #     POSTGRES_USER: postgres
+  #     POSTGRES_PASSWORD: "postgres"
+  #     POSTGRES_DB: postgres
+  #   volumes:
+  #     - db-data:/var/lib/postgresql/data
+  #     - ./postgres/:/docker-entrypoint-initdb.d/
+  #   ports:
+  #     - "5432:5432"
+
+  gateway:
+    image: griffire/lab4-gateway
+    build:
+      context: ./v2/python_v2/gateway
+      dockerfile: Dockerfile
+    container_name: gateway
+    restart: on-failure
+    ports:
+      - "8080:8080"
+    # depends_on:
+    #   - postgres
+
+  reservation:
+    image: griffire/lab4-reservation
+    build:
+      context: ./v2/python_v2/reservation
+      dockerfile: Dockerfile
+    container_name: reservation
+    restart: on-failure
+    ports:
+      - "8070:8070"
+    # depends_on:
+    #   - postgres
+
+  loyalty:
+    image: griffire/lab4-loyalty
+    build:
+      context: ./v2/python_v2/loyalty
+      dockerfile: Dockerfile
+    container_name: loyalty
+    restart: on-failure
+    ports:
+      - "8050:8050"
+    # depends_on:
+    #   - postgres
+
+  payment:
+    image: griffire/lab4-payment
+    build:
+      context: ./v2/python_v2/payment
+      dockerfile: Dockerfile
+    container_name: payment
+    restart: on-failure
+    ports:
+      - "8060:8060"
+    # depends_on:
+    #   - spread_loyalty
+    #   - spread_payment
+    #   - spread_reservation
+
+volumes:
+  db-data:

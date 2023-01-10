@@ -1,0 +1,29 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+
+metadata:
+  name: minimal-ingress
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/rewrite-target: /
+
+spec:
+  # ingressClassName: nginx
+  defaultBackend:
+    service:
+      name: gateway
+      port:
+        number: 8080
+  rules:
+  - http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: gateway
+            port:
+              number: 8080
+
+# # helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+# # helm install ingress-nginx/ingress-nginx --generate-name

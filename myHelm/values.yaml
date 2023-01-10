@@ -1,0 +1,4 @@
+image:
+repository: rsoi-2022-lab4-deploy-to-k8s-Griffire
+tag: latest
+pullPolicy: IfNotPresent

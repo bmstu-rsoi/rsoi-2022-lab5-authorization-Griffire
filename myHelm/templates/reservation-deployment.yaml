@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    io.kompose.service: reservation
+  name: reservation
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: reservation
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: reservation
+    spec:
+      containers:
+        - image: griffire/lab4-reservation
+          name: reservation
+          ports:
+            - containerPort: 8070
+          resources: {}
+#      restartPolicy: OnFailure
+status: {}

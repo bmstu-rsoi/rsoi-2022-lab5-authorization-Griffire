@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    io.kompose.service: payment
+  name: payment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: payment
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: payment
+    spec:
+      containers:
+        - image: griffire/lab4-payment
+          name: payment
+          ports:
+            - containerPort: 8060
+          resources: {}
+#      restartPolicy: OnFailure
+status: {}

@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    io.kompose.service: loyalty
+  name: loyalty
+spec:
+  ports:
+    - name: "8050"
+      port: 8050
+      targetPort: 8050
+  selector:
+    io.kompose.service: loyalty
+status:
+  loadBalancer: {}
