@@ -71,6 +71,8 @@ def get_token(request: Request):
         data = token_parse(bearer.split()[1])
     except:
         data = None
+    print('data')
+    print(data)
     return data
 
 
@@ -78,10 +80,10 @@ def get_token(request: Request):
 def auth_name(request: Request):
     data = get_token(request)
     print("___NAME___")
-    print(data)
+    print(data.get('https://example.com/name'))
     if data is None:
         return None
-    return data.get('name')
+    return data.get('https://example.com/name')
 
 
 @app.get("/manage/health")
@@ -398,18 +400,18 @@ def get_reservation(request: Request, reservationUid: str):
 
 
 
-payload = {"client_id":"l0vGoTD3V5pKzH3XooJYQcniAiaYf54T",
-           "client_secret":"sNugChjLk9K-5T1Cptp4sRXj588KfxnOIZ3AWVDRsxycWmD7B5_dndFy7aDTQLJ-",
-           "audience":"https://lab5griffv1api",
-           "grant_type":"client_credentials"}
-
-payload = {"client_id":"l0vGoTD3V5pKzH3XooJYQcniAiaYf54T",
-           "client_secret":"sNugChjLk9K-5T1Cptp4sRXj588KfxnOIZ3AWVDRsxycWmD7B5_dndFy7aDTQLJ-",
-           "audience":"https://lab5griffv1api",
-           "grant_type":"password",
-           "username": "g00gle.com@internet.ru",
-           "password": "g00gle.com@internet.ru",
-           "scope": "openid"}
+# payload = {"client_id":"l0vGoTD3V5pKzH3XooJYQcniAiaYf54T",
+#            "client_secret":"sNugChjLk9K-5T1Cptp4sRXj588KfxnOIZ3AWVDRsxycWmD7B5_dndFy7aDTQLJ-",
+#            "audience":"https://lab5griffv1api",
+#            "grant_type":"client_credentials"}
+#
+# payload = {"client_id":"l0vGoTD3V5pKzH3XooJYQcniAiaYf54T",
+#            "client_secret":"sNugChjLk9K-5T1Cptp4sRXj588KfxnOIZ3AWVDRsxycWmD7B5_dndFy7aDTQLJ-",
+#            "audience":"https://lab5griffv1api",
+#            "grant_type":"password",
+#            "username": "g00gle.com@internet.ru",
+#            "password": "g00gle.com@internet.ru",
+#            "scope": "openid"}
 
 # payload = {"client_id":"l0vGoTD3V5pKzH3XooJYQcniAiaYf54T",
 #            "client_secret":"sNugChjLk9K-5T1Cptp4sRXj588KfxnOIZ3AWVDRsxycWmD7B5_dndFy7aDTQLJ-",
@@ -417,19 +419,19 @@ payload = {"client_id":"l0vGoTD3V5pKzH3XooJYQcniAiaYf54T",
 #            "grant_type":"password",
 #            "username": "g00gle.com@internet.ru",
 #            "password": "g00gle.com@internet.ru"
-           }
+#            }
 
 
-headers = {'Content-Type': 'application/json'}
+# headers = {'Content-Type': 'application/json'}
 
-tt = 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IlhnZ3BMSGdkX2dhR1c2djBrdVRPZiJ9.eyJuaWNrbmFtZSI6ImcwMGdsZS5jb20iLCJuYW1lIjoiVGVzdCBNYXgiLCJwaWN0dXJlIjoiaHR0cHM6Ly9zLmdyYXZhdGFyLmNvbS9hdmF0YXIvZTM0ZTQzODFhMWI2ZGMxZGU4MDg0YWEyMDk2MGM5Yjc_cz00ODAmcj1wZyZkPWh0dHBzJTNBJTJGJTJGY2RuLmF1dGgwLmNvbSUyRmF2YXRhcnMlMkZnMC5wbmciLCJ1cGRhdGVkX2F0IjoiMjAyMy0wMS0xMFQxNzo0NjoyOS41MjZaIiwiZW1haWwiOiJnMDBnbGUuY29tQGludGVybmV0LnJ1IiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJpc3MiOiJodHRwczovL2Rldi1jMGFjc3Fwdmd4NWcxcGhlLnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2M2JkOTcyNDYyZDc1N2RhMjI0OWJiNjAiLCJhdWQiOiJsMHZHb1REM1Y1cEt6SDNYb29KWVFjbmlBaWFZZjU0VCIsImlhdCI6MTY3MzM3Mjc4OSwiZXhwIjoxNjczNDA4Nzg5fQ.nnrxJZvLQrvpMgLbLx14XP6gutMYP7g7c7ySZEgclt-7Yq5vQbWQEwCI0rs7RpL4T1Tiih4ZVIZVDFfCRrWIrbmvb5olv2q2Kspijt-AGnA6-XxOWnsX9PGMPPgXov_IYjcRpyXbRRq3_n3B5cNynQvZTlkdsMS9ClXHTD1Jsce5V4jJEkO93fNhxtFw2zlOkqN9mgH4eA1znMMlvOBLHTNGc9q6wksRzp9uxxCea1dYOqWOfD1AZRBYbJFUjTR26BiZ9bBn3Llhw4KLt_yUl54zRIxTwjAVahM_ItDth34w6iRpQU3d2ZHGW3cEvnrfL-GoOB9g1KPBR8zN_u4WkA'
+# tt = 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IlhnZ3BMSGdkX2dhR1c2djBrdVRPZiJ9.eyJuaWNrbmFtZSI6ImcwMGdsZS5jb20iLCJuYW1lIjoiVGVzdCBNYXgiLCJwaWN0dXJlIjoiaHR0cHM6Ly9zLmdyYXZhdGFyLmNvbS9hdmF0YXIvZTM0ZTQzODFhMWI2ZGMxZGU4MDg0YWEyMDk2MGM5Yjc_cz00ODAmcj1wZyZkPWh0dHBzJTNBJTJGJTJGY2RuLmF1dGgwLmNvbSUyRmF2YXRhcnMlMkZnMC5wbmciLCJ1cGRhdGVkX2F0IjoiMjAyMy0wMS0xMFQxNzo0NjoyOS41MjZaIiwiZW1haWwiOiJnMDBnbGUuY29tQGludGVybmV0LnJ1IiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJpc3MiOiJodHRwczovL2Rldi1jMGFjc3Fwdmd4NWcxcGhlLnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2M2JkOTcyNDYyZDc1N2RhMjI0OWJiNjAiLCJhdWQiOiJsMHZHb1REM1Y1cEt6SDNYb29KWVFjbmlBaWFZZjU0VCIsImlhdCI6MTY3MzM3Mjc4OSwiZXhwIjoxNjczNDA4Nzg5fQ.nnrxJZvLQrvpMgLbLx14XP6gutMYP7g7c7ySZEgclt-7Yq5vQbWQEwCI0rs7RpL4T1Tiih4ZVIZVDFfCRrWIrbmvb5olv2q2Kspijt-AGnA6-XxOWnsX9PGMPPgXov_IYjcRpyXbRRq3_n3B5cNynQvZTlkdsMS9ClXHTD1Jsce5V4jJEkO93fNhxtFw2zlOkqN9mgH4eA1znMMlvOBLHTNGc9q6wksRzp9uxxCea1dYOqWOfD1AZRBYbJFUjTR26BiZ9bBn3Llhw4KLt_yUl54zRIxTwjAVahM_ItDth34w6iRpQU3d2ZHGW3cEvnrfL-GoOB9g1KPBR8zN_u4WkA'
 if __name__ == "__main__":
-    print(sql_path)
-    response = http_req.post('https://dev-c0acsqpvgx5g1phe.us.auth0.com/oauth/token', json=payload, headers=headers)
+    # print(sql_path)
+    # response = http_req.post('https://dev-c0acsqpvgx5g1phe.us.auth0.com/oauth/token', json=payload, headers=headers)
     # tok = 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IlhnZ3BMSGdkX2dhR1c2djBrdVRPZiJ9.eyJpc3MiOiJodHRwczovL2Rldi1jMGFjc3Fwdmd4NWcxcGhlLnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJJUjlSN2Nqb2djSzgzSjJiQkZVUVZMN1Y4MmszcHdTSkBjbGllbnRzIiwiYXVkIjoiaHR0cHM6Ly9kZXYtYzBhY3NxcHZneDVnMXBoZS51cy5hdXRoMC5jb20vYXBpL3YyLyIsImlhdCI6MTY3MzM2NDIwNCwiZXhwIjoxNjczNDUwNjA0LCJhenAiOiJJUjlSN2Nqb2djSzgzSjJiQkZVUVZMN1Y4MmszcHdTSiIsImd0eSI6ImNsaWVudC1jcmVkZW50aWFscyJ9.N3dgeBmbFcXl-_OZUywMCCFbNmCPPodn4PFafpu3sN3IDn6Qb5rKyfkSB7gqwY-jxcuI7Nr9t6c1TFixEA_EOP6tjMUfryaiKG23A-_nDqXxNgkoqF6jAvsGxtVdy7sSjWOVQIKT58hSLD4OvTozFh3dAyviPjTLhzaH2SK3ueBRIX4F6vPCopZHvKhapVOI4eoIdIxLYJvlz5yzikTE82d-h1YYT0HtLxrM_hRzYgxJxU0Tj-_1ljlapDcHPlv02kiv0CpU9aL7hprod5L8rtx-Kp3tx6QzWVvmueCivIbhilSz0XBx2fICX1MuZSkk2q71M7L78mcWQfBfxibG6g'
     # d = _token_parse(tt)
-    print(response.content)
-    # uvicorn.run(app, host="0.0.0.0", port=port)
+    # print(response.content)
+    uvicorn.run(app, host="0.0.0.0", port=port)
 
     # start_DB()
     # uvicorn.run(app, host="localhost", port=port)

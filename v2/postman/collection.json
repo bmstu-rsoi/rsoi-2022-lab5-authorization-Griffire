@@ -34,10 +34,15 @@
 							"type": "noauth"
 						},
 						"method": "POST",
-						"header": [],
+						"header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
 						"body": {
                             "mode": "raw",
-							"raw": "{ \"client_id\":\"l0vGoTD3V5pKzH3XooJYQcniAiaYf54T\", \"client_secret\":\"sNugChjLk9K-5T1Cptp4sRXj588KfxnOIZ3AWVDRsxycWmD7B5_dndFy7aDTQLJ-\",\"audience\":\"https://lab5griffv1api\", \"grant_type\":\"password\",\"username\":\"g00gle.com@internet.ru\", \"password\":\"g00gle.com@internet.ru\", \"scope\":\"openid\"  }"
+							"raw": "{ \"client_id\":\"{{clientId}}\", \"client_secret\":\"{{clientSecret}}\",\"audience\":\"https://lab5griffv1api\", \"grant_type\":\"password\",\"username\":\"{{username}}\", \"password\":\"{{password}}\"  }"
                             
 						},
 						"url": {
