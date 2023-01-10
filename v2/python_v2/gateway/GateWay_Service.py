@@ -19,9 +19,6 @@ sql_path = os.path.dirname(__file__)
 port = 8080
 
 
-# DATABASE_URL = os.getenv('localhost:5432')
-# conn = psycopg2.connect(DATABASE_URL, sslmode='require')
-
 
 @dataclass
 class PostHotelReserve:
@@ -36,7 +33,7 @@ class MyEncoder(JSONEncoder):
 
 
 JWT_WELLKNOWN = 'https://dev-c0acsqpvgx5g1phe.us.auth0.com/.well-known/jwks.json'
-# JWT_WELLKNOWN = 'https://dev-inwht6vkld1mybeu.us.auth0.com/.well-known/jwks.json'
+
 jwks_client = jwt.PyJWKClient(JWT_WELLKNOWN)
 
 
@@ -174,11 +171,6 @@ def post_reservations(request: Request, item: PostHotelReserve):
                         })
                         print(req.status_code)
 
-                    # inp_post_response = http_req.get('http://reservation:8070/api/v1/reservation/',
-                    #                                  headers={"reservationUid": reservationUid})
-                    # if inp_post_response.status_code != 404:
-                    #     reserve_elem = inp_post_response.json()
-                    #     hotel['payment'] = reserve_elem['reservationUid']
 
                     print(nights, price)
                     headers = {'Content-Type': 'application/json'}
@@ -226,11 +218,6 @@ def get_me(request: Request):
 
         headers = {'Content-Type': 'application/json'}
         return JSONResponse(content=info, headers=headers, status_code=status.HTTP_200_OK)
-        #
-        #
-        #
-        # else:
-        #     print('4040404040404040404')
 
 
 @app.get("/api/v1/reservations")
@@ -273,8 +260,7 @@ def get_reservations(request: Request):
             print(reservations_row)
             headers = {'Content-Type': 'application/json'}
             #
-            # with open('/Users/alexone/Desktop/BMSTU/Mag_sem_1/rsoi-2022-lab2-microservices-Griffire/v2/Sql_requst_v2/test.json', 'r') as f:
-            #     data = json.load(f)
+
             return JSONResponse(content=reservations_row, headers=headers, status_code=status.HTTP_200_OK)
 
             # print(inp_post_response.json())
@@ -341,9 +327,7 @@ def get_reservation(request: Request, reservationUid: str):
 
             print(reservations_row)
             headers = {'Content-Type': 'application/json'}
-            #
-            # with open('/Users/alexone/Desktop/BMSTU/Mag_sem_1/rsoi-2022-lab2-microservices-Griffire/v2/Sql_requst_v2/test.json', 'r') as f:
-            #     data = json.load(f)
+
             return JSONResponse(content=reservations_row[0], headers=headers, status_code=status.HTTP_200_OK)
 
 
@@ -399,39 +383,7 @@ def get_reservation(request: Request, reservationUid: str):
             return JSONResponse(content=reservation, headers=headers, status_code=status.HTTP_204_NO_CONTENT)
 
 
-
-# payload = {"client_id":"l0vGoTD3V5pKzH3XooJYQcniAiaYf54T",
-#            "client_secret":"sNugChjLk9K-5T1Cptp4sRXj588KfxnOIZ3AWVDRsxycWmD7B5_dndFy7aDTQLJ-",
-#            "audience":"https://lab5griffv1api",
-#            "grant_type":"client_credentials"}
-#
-# payload = {"client_id":"l0vGoTD3V5pKzH3XooJYQcniAiaYf54T",
-#            "client_secret":"sNugChjLk9K-5T1Cptp4sRXj588KfxnOIZ3AWVDRsxycWmD7B5_dndFy7aDTQLJ-",
-#            "audience":"https://lab5griffv1api",
-#            "grant_type":"password",
-#            "username": "g00gle.com@internet.ru",
-#            "password": "g00gle.com@internet.ru",
-#            "scope": "openid"}
-
-# payload = {"client_id":"l0vGoTD3V5pKzH3XooJYQcniAiaYf54T",
-#            "client_secret":"sNugChjLk9K-5T1Cptp4sRXj588KfxnOIZ3AWVDRsxycWmD7B5_dndFy7aDTQLJ-",
-#            "audience":"https://lab5griffv1api",
-#            "grant_type":"password",
-#            "username": "g00gle.com@internet.ru",
-#            "password": "g00gle.com@internet.ru"
-#            }
-
-
-# headers = {'Content-Type': 'application/json'}
-
-# tt = 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IlhnZ3BMSGdkX2dhR1c2djBrdVRPZiJ9.eyJuaWNrbmFtZSI6ImcwMGdsZS5jb20iLCJuYW1lIjoiVGVzdCBNYXgiLCJwaWN0dXJlIjoiaHR0cHM6Ly9zLmdyYXZhdGFyLmNvbS9hdmF0YXIvZTM0ZTQzODFhMWI2ZGMxZGU4MDg0YWEyMDk2MGM5Yjc_cz00ODAmcj1wZyZkPWh0dHBzJTNBJTJGJTJGY2RuLmF1dGgwLmNvbSUyRmF2YXRhcnMlMkZnMC5wbmciLCJ1cGRhdGVkX2F0IjoiMjAyMy0wMS0xMFQxNzo0NjoyOS41MjZaIiwiZW1haWwiOiJnMDBnbGUuY29tQGludGVybmV0LnJ1IiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJpc3MiOiJodHRwczovL2Rldi1jMGFjc3Fwdmd4NWcxcGhlLnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2M2JkOTcyNDYyZDc1N2RhMjI0OWJiNjAiLCJhdWQiOiJsMHZHb1REM1Y1cEt6SDNYb29KWVFjbmlBaWFZZjU0VCIsImlhdCI6MTY3MzM3Mjc4OSwiZXhwIjoxNjczNDA4Nzg5fQ.nnrxJZvLQrvpMgLbLx14XP6gutMYP7g7c7ySZEgclt-7Yq5vQbWQEwCI0rs7RpL4T1Tiih4ZVIZVDFfCRrWIrbmvb5olv2q2Kspijt-AGnA6-XxOWnsX9PGMPPgXov_IYjcRpyXbRRq3_n3B5cNynQvZTlkdsMS9ClXHTD1Jsce5V4jJEkO93fNhxtFw2zlOkqN9mgH4eA1znMMlvOBLHTNGc9q6wksRzp9uxxCea1dYOqWOfD1AZRBYbJFUjTR26BiZ9bBn3Llhw4KLt_yUl54zRIxTwjAVahM_ItDth34w6iRpQU3d2ZHGW3cEvnrfL-GoOB9g1KPBR8zN_u4WkA'
 if __name__ == "__main__":
-    # print(sql_path)
-    # response = http_req.post('https://dev-c0acsqpvgx5g1phe.us.auth0.com/oauth/token', json=payload, headers=headers)
-    # tok = 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IlhnZ3BMSGdkX2dhR1c2djBrdVRPZiJ9.eyJpc3MiOiJodHRwczovL2Rldi1jMGFjc3Fwdmd4NWcxcGhlLnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJJUjlSN2Nqb2djSzgzSjJiQkZVUVZMN1Y4MmszcHdTSkBjbGllbnRzIiwiYXVkIjoiaHR0cHM6Ly9kZXYtYzBhY3NxcHZneDVnMXBoZS51cy5hdXRoMC5jb20vYXBpL3YyLyIsImlhdCI6MTY3MzM2NDIwNCwiZXhwIjoxNjczNDUwNjA0LCJhenAiOiJJUjlSN2Nqb2djSzgzSjJiQkZVUVZMN1Y4MmszcHdTSiIsImd0eSI6ImNsaWVudC1jcmVkZW50aWFscyJ9.N3dgeBmbFcXl-_OZUywMCCFbNmCPPodn4PFafpu3sN3IDn6Qb5rKyfkSB7gqwY-jxcuI7Nr9t6c1TFixEA_EOP6tjMUfryaiKG23A-_nDqXxNgkoqF6jAvsGxtVdy7sSjWOVQIKT58hSLD4OvTozFh3dAyviPjTLhzaH2SK3ueBRIX4F6vPCopZHvKhapVOI4eoIdIxLYJvlz5yzikTE82d-h1YYT0HtLxrM_hRzYgxJxU0Tj-_1ljlapDcHPlv02kiv0CpU9aL7hprod5L8rtx-Kp3tx6QzWVvmueCivIbhilSz0XBx2fICX1MuZSkk2q71M7L78mcWQfBfxibG6g'
-    # d = _token_parse(tt)
-    # print(response.content)
+
     uvicorn.run(app, host="0.0.0.0", port=port)
 
-    # start_DB()
-    # uvicorn.run(app, host="localhost", port=port)
