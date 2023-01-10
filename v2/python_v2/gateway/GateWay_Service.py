@@ -80,7 +80,7 @@ def get_token(request: Request):
 def auth_name(request: Request):
     data = get_token(request)
     print("___NAME___")
-    print(data.get('https://example.com/name'))
+    # print(data.get('https://example.com/name'))
     if data is None:
         return None
     return data.get('https://example.com/name')
